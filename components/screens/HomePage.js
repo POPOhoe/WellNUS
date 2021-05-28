@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Header from './../Header';
 import Tab from './../Tab';
 
-const HomePage = ({navigation}) => {
+const HomePage = ({navigation, userLogout}) => {
 
     const pressBasics = () => {
         navigation.navigate('Basics')
@@ -22,7 +22,8 @@ const HomePage = ({navigation}) => {
     }
   
       const pressLogout = () => {
-        navigation.navigate('Login')
+        userLogout()
+        
     }
 
     return (
