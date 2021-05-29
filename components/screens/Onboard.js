@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Text, View, StatusBar, Image, StyleSheet} from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider'
 
@@ -17,6 +17,8 @@ const Onboard = ({pressDone}) => {
           bg: '#febe29',
         },
       ];
+
+    
 
     const renderDoneButton = () => {
         return (

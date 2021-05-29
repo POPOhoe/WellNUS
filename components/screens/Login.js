@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useState, useContext} from 'react'
 import { Text, View, StyleSheet, TextInput, Button, ActivityIndicator } from 'react-native'
 import firebase from './../../firebase/fire';
-
 
 const Login = ({navigation, userLogin}) => {
 
