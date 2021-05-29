@@ -13,7 +13,7 @@ const SignUp = ({navigation}) => {
     const signUp = async() => {
         try {
             const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
-            navigation.navigate('Home_Page')
+            navigation.navigate('Login')
         } catch (err) {
             setError(err.message)
         }

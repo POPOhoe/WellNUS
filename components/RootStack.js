@@ -77,74 +77,77 @@ const RootStack = () => {
     //forum screen
     function forum({navigation}) {
         return (
-        <Forum navigation = {navigation} />
+            <Forum navigation = {navigation} />
         )
     }
 
     //signup screen
     function signUp({navigation}) {
         return (
-        <SignUp navigation = {navigation} />
+            <SignUp navigation = {navigation} />
         )
     }
 
 
     return (
-        <>
-            <NavigationContainer>
-            <Stack.Navigator 
-                screenOptions = {{
-                header: () => null
-                }}>
-                {!userToken ?
+        
+        <NavigationContainer>
+        <Stack.Navigator 
+            screenOptions = {{
+            header: () => null
+            }}>
+            {!userToken ?
+                
+                <>
+                    <Stack.Screen 
+                        name = 'onboard'
+                        component = {onboard}
+                    />
+                
+                
+                    <Stack.Screen 
+                        name = 'Login'
+                        component = {Login_Screen}
+                    />
+
+                    <Stack.Screen 
+                        name = 'Signup'
+                        component = {signUp}
+                    />
+
+                </> :
+                <>
+                    <Stack.Screen 
+                        name = 'Home_Page'
+                        component = {Home_Page}
+                    />
+
+                    <Stack.Screen
+                        name = 'Basics'
+                        component = {Basics}
+                    /> 
+
+                    <Stack.Screen
+                        name = 'Sleep'
+                        component = {sleep}
+                    />      
+
+                    <Stack.Screen
+                        name = 'Stress'
+                        component = {stress}
+                    />  
+
+                    <Stack.Screen
+                        name = 'Forum'
+                        component = {forum}
+                    /> 
+
                     
-                    <>
-                        <Stack.Screen 
-                            name = 'onboard'
-                            component = {onboard}
-                        />
-                    
-                    
-                        <Stack.Screen 
-                            name = 'Login'
-                            component = {Login_Screen}
-                        />
-                    </> :
-                    <>
-                        <Stack.Screen 
-                            name = 'Home_Page'
-                            component = {Home_Page}
-                        />
-
-                        <Stack.Screen
-                            name = 'Basics'
-                            component = {Basics}
-                        /> 
-
-                        <Stack.Screen
-                            name = 'Sleep'
-                            component = {sleep}
-                        />      
-
-                        <Stack.Screen
-                            name = 'Stress'
-                            component = {stress}
-                        />  
-
-                        <Stack.Screen
-                            name = 'Forum'
-                            component = {forum}
-                        /> 
-
-                        <Stack.Screen
-                            name = 'Signup'
-                            component = {signUp}
-                        />
-                    </>
-                } 
-            </Stack.Navigator>
-            </NavigationContainer>          
-        </>
+                </>
+            } 
+        </Stack.Navigator>
+        </NavigationContainer>          
+        
     )
 }
 
