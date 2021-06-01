@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity } from 'react-native';
+
 import firebase from './../../firebase/fire';
 
 const SignUp = ({navigation}) => {
@@ -59,7 +60,9 @@ const SignUp = ({navigation}) => {
                 />
             </View>
             
-            <TouchableOpacity onPress = {goBack}>
+            <TouchableOpacity 
+                style = {styles.touchable}
+                onPress = {goBack}>
                 <Text>Already have an account? Tap here to sign in</Text>
             </TouchableOpacity>
             
@@ -90,7 +93,13 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     touchable: {
-        backgroundColor: '#f8f8f8'
+        fontSize: 20,
+        paddingVertical: 5,
+        backgroundColor: '#778899',
+        borderRadius: 6,
+        width: 300,
+        alignItems: 'center',
+        margin: 5
     }
 })
 

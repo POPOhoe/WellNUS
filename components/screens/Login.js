@@ -25,6 +25,7 @@ const Login = ({navigation, userLogin}) => {
         startLoading()
         try {
             const response = await firebase.auth().signInWithEmailAndPassword(email, password)
+            await AsyncStorage.setItem('user', 'loggedIn')
             userLogin()
             finishLoading()
             navigation.navigate('Home_Page')

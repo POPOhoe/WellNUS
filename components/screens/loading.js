@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
 
-const loading = () => {
+const Loading = () => {
     return (
         <View>
             <ActivityIndicator 
@@ -19,9 +19,10 @@ const styles = StyleSheet.create({
     loading: {
         flex: 1,
         justifyContent: 'center', 
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: '45%'
     }
 
 })
 
-export default loading
+export default Loading

@@ -1,4 +1,5 @@
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect }from 'react';
 import { View } from 'react-native';
 import Header from './../Header';
 import Tab from './../Tab';
@@ -9,22 +10,23 @@ const HomePage = ({navigation, userLogout}) => {
         navigation.navigate('Basics')
     }
   
-      const pressSleep = () => {
-        navigation.navigate('Sleep')
+    const pressSleep = () => {
+      navigation.navigate('Sleep')
     }
   
-      const pressStress = () => {
-        navigation.navigate('Stress')
+    const pressStress = () => {
+      navigation.navigate('Stress')
     }
   
-      const pressForum = () => {
-        navigation.navigate('Forum')
+    const pressForum = () => {
+      navigation.navigate('Forum')
     }
   
-      const pressLogout = () => {
-        userLogout()
-        
-    }
+    const pressLogout = async () => {
+      await AsyncStorage.removeItem('user')
+      userLogout()
+      
+  }
 
     return (
     <View>

@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,12 +10,11 @@ import SleepScreen from './screens/SleepScreen'
 import Forum from './screens/Forum'
 import SignUp from './screens/SignUp'
 import Onboard from './screens/Onboard'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const RootStack = () => {
     const [userToken, setUserToken] = useState(false)
-
-    const [finishOnboarding, setFinishOnboarding] = useState(false)
 
     const userLogin = () => {
         setUserToken(true)
@@ -24,6 +23,18 @@ const RootStack = () => {
     const userLogout = () => {
         setUserToken(false);
     }
+
+    const checkUser = async () => {
+        const user = await AsyncStorage.getItem('user')
+    
+        if (user !== null) {
+            setUserToken(true)
+        }
+    }
+
+    useEffect(() => {
+        checkUser()
+    })
 
     const Stack = createStackNavigator();
 
