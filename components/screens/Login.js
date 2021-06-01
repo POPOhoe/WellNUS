@@ -24,14 +24,16 @@ const Login = ({navigation, userLogin}) => {
     const login = async() => {
         startLoading()
         try {
-            const response = await firebase.auth().signInWithEmailAndPassword(email, password)
+            await firebase.auth().signInWithEmailAndPassword(email, password)
             await AsyncStorage.setItem('user', 'loggedIn')
             userLogin()
-            finishLoading()
-            navigation.navigate('Home_Page')
+            // finishLoading()
+            // navigation.navigate('Home_Page')
         } catch (err) {
             finishLoading()
             setError(err.message)
+        } finally {
+            finishLoading()
         }
         
     }

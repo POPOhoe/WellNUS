@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RootStack from './components/RootStack'
+import RootStack from './stacks/RootStack'
 
 const App = () => {
 
