@@ -35,7 +35,6 @@ const HomePage = ({navigation, userLogout}) => {
         <Tab type = 'For Sleep' onPress = {pressSleep}/>
         <Tab type = 'Stress Relief' onPress = {pressStress}/>
         <Tab type = 'Forum' onPress = {pressForum} />
-        <Tab type = 'Logout' onPress = {pressLogout} />
     </View>
     )
 }

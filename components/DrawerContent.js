@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { DrawerContentScrollView, drawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import {
@@ -14,9 +14,10 @@ import {
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthContext } from './Context'
 
-const DrawerContent = (props, {userLogout}) => {
+const DrawerContent = (props) => {
 
     const [darkTheme, setDarkTheme] = useState(false)
 
@@ -29,6 +30,8 @@ const DrawerContent = (props, {userLogout}) => {
         console.log('LOL')
         userLogout()
     }
+
+    const { signOut } = useContext(AuthContext)
 
     return (
         <View style = {{flex: 1}}>
@@ -112,7 +115,7 @@ const DrawerContent = (props, {userLogout}) => {
                         />
                     )}
                     label = 'Log Out'
-                    onPress = {() => {}}
+                    onPress = {() => {signOut()}}
 
                 />
             </Drawer.Section>

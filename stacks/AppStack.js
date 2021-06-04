@@ -9,6 +9,7 @@ import Forum from '../components/screens/Forum';
 import DrawerContent from '../components/DrawerContent';
 import ProfileScreen from '../components/screens/ProfileScreen';
 import SettingsScreen from '../components/screens/SettingsScreen';
+import AuthContext from '../components/Context'
 
 const AppStack = ({userLogout}) => {
 
@@ -95,11 +96,14 @@ const AppStack = ({userLogout}) => {
     }
 
     return (
-        <Drawer.Navigator drawerContent = {props => <DrawerContent {...props} />}>
-            <Drawer.Screen name = 'Home' component = {tabNavigator} />
-            <Drawer.Screen name = 'Profile' component = {profile} />
-            <Drawer.Screen name = 'Settings' component = {settings} />
-        </Drawer.Navigator>
+        
+            <Drawer.Navigator drawerContent = {props => <DrawerContent {...props} />}>
+                <Drawer.Screen name = 'Home' component = {tabNavigator} />
+                <Drawer.Screen name = 'Profile' component = {profile} />
+                <Drawer.Screen name = 'Settings' component = {settings} />
+            </Drawer.Navigator>
+        
+        
     )
 }
 

@@ -1,33 +1,13 @@
-import React from 'react'
+import React, { useContext }from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Onboard from '../components/screens/Onboard'
-import SignUp from '../components/screens/SignUp'
-import Login from '../components/screens/Login'
+import Onboard from '../components/screens/Onboard';
+import Onboard2 from '../components/screens/Onboard2';
+import SignUp from '../components/screens/SignUp';
+import Login from '../components/screens/Login';
 
-const LoginStack = ({userLogin}) => {
+const LoginStack = () => {
 
     const Stack = createStackNavigator()
-
-    //Onboard sliders
-    function onboard({navigation}) {
-        return (
-            <Onboard pressDone = {() => navigation.navigate('Login') }/>
-        )
-    }
-
-    //Login Screen
-    function Login_Screen({navigation}) {
-        return (
-            <Login navigation = {navigation} userLogin = {userLogin}/>
-        )
-    }
-
-    //signup screen
-    function signUp({navigation}) {
-        return (
-            <SignUp navigation = {navigation} />
-        )
-    }
 
     return (
         <Stack.Navigator 
@@ -38,18 +18,22 @@ const LoginStack = ({userLogin}) => {
 
             <Stack.Screen 
                 name = 'onboard'
-                component = {onboard}
+                component = {Onboard}
             />
         
-        
+            <Stack.Screen 
+                name = 'onboard2'
+                component = {Onboard2}
+            />
+
             <Stack.Screen 
                 name = 'Login'
-                component = {Login_Screen}
+                component = {Login}
             />
 
             <Stack.Screen 
                 name = 'Signup'
-                component = {signUp}
+                component = {SignUp}
             /> 
                     
         </Stack.Navigator> 
