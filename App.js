@@ -4,8 +4,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import LoginStack from './stacks/LoginStack';
 import AppStack from './stacks/AppStack';
 import { AuthContext } from './components/Context';
-import { NavigationContainer } from '@react-navigation/native';
+import { 
+  NavigationContainer, 
+  DarkTheme as NavigationDarkTheme, 
+  DefaultTheme as NavigationDefaultTheme
+} from '@react-navigation/native';
+import { 
+  Provider as PaperProvider, 
+  DarkTheme as PaperDarkTheme, 
+  DefaultTheme as PaperDefaultTheme
+} from 'react-native-paper'
 import firebase from './firebase/fire';
+import * as Font from 'expo-font'
 
 const App = () => {
 
@@ -14,6 +24,8 @@ const App = () => {
   const [userToken, setUserToken] = useState('')
 
   const [error, setError] = useState(null)
+
+  const [darkTheme, setDarkTheme] = useState(false)
 
   const authContext = useMemo(() => ({
     setUser: () => {
@@ -41,8 +53,18 @@ const App = () => {
         console.log('theres no error')
         return null
       }      
+    },
+    toggleTheme: () => {
+      
+      setDarkTheme(!darkTheme)  
+      if (darkTheme) {
+        console.log('yes')
+      } else {
+        console.log('no')
+      }
     }
-  }), [])
+    
+  }))
 
   const load = async() => {
     try {
@@ -55,9 +77,18 @@ const App = () => {
     }
   }
 
+  const getFonts = async() =>{ 
+    return (
+      await Font.loadAsync({
+        'RobotoSlab': require('./assets/fonts/RobotoSlab-VariableFont_wght.ttf')
+      })
+    )
+  }
+
   useEffect(() => {
     load()
-    setIsLoading(false)
+    getFonts()
+    setTimeout(() => { setIsLoading(false) }, 1000)
   }, [])
 
   if (isLoading) {
@@ -68,17 +99,43 @@ const App = () => {
     )
   }
 
+  const customDefaultTheme = {
+    ...NavigationDefaultTheme, 
+    ...PaperDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+      ...PaperDefaultTheme.colors,
+      backgroud: '#ffffff',
+      text: '#333333'
+    }
+  }
+
+  const customDarkTheme = {
+    ...NavigationDarkTheme, 
+    ...PaperDarkTheme,
+    colors: {
+      ...NavigationDarkTheme.colors,
+      ...PaperDarkTheme.colors,
+      backgroud: '#333333',
+      text: '#ffffff'
+    }
+  }
+  
+  const theme = darkTheme ? customDarkTheme : customDefaultTheme
+  
   
 
   return (
-    <AuthContext.Provider value = {authContext}>
-      <NavigationContainer>
-        {userToken ?
-          <AppStack /> :
-          <LoginStack />
-        }
-      </NavigationContainer>
-    </AuthContext.Provider>
+    <PaperProvider theme = {theme}>    
+      <AuthContext.Provider value = {authContext}>
+        <NavigationContainer theme = {theme}>
+          {userToken ?
+            <AppStack /> :
+            <LoginStack />
+          }
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </PaperProvider>
      
   )
 }

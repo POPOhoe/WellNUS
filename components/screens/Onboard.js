@@ -11,6 +11,7 @@ const Onboard = ({navigation}) => {
     return (
 
       <View style = {styles.container}>
+        <StatusBar backgroundColor = '#009387' barStyle = 'light-content'/>
         <View style = {styles.header}>
           <Animatable.Image
             animation = 'bounceIn'

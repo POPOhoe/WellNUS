@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { DrawerContentScrollView, drawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import {
+    useTheme,
     Avatar, 
     Title, 
     Caption, 
@@ -19,19 +20,9 @@ import { AuthContext } from './Context'
 
 const DrawerContent = (props) => {
 
-    const [darkTheme, setDarkTheme] = useState(false)
+    const paperTheme = useTheme()
 
-    const toggleTheme = () => {
-        setDarkTheme(!darkTheme);
-    }
-
-    const logout = async () => {
-        await AsyncStorage.removeItem('user')
-        console.log('LOL')
-        userLogout()
-    }
-
-    const { signOut } = useContext(AuthContext)
+    const { signOut, toggleTheme } = useContext(AuthContext)
 
     return (
         <View style = {{flex: 1}}>
@@ -63,7 +54,7 @@ const DrawerContent = (props) => {
                             )}
                             label = 'Home'
                             onPress = {() => {
-                                props.navigation.navigate('Home_Page')
+                                props.navigation.navigate('home')
                             }}
                         />
                         <Drawer.Item
@@ -94,11 +85,11 @@ const DrawerContent = (props) => {
                         />
                     </Drawer.Section>
                     <Drawer.Section title = 'Preferences'>
-                        <TouchableRipple onPress = {toggleTheme} >
+                        <TouchableRipple onPress = {() => toggleTheme()} >
                             <View style = {styles.preference}>
                                 <Text>Dark Theme</Text>
                                 <View pointerEvents = 'none'>
-                                    <Switch value = {darkTheme} />
+                                    <Switch value = {paperTheme.dark} />
                                 </View>
                             </View>
                         </TouchableRipple>

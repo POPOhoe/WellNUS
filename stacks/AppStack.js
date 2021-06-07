@@ -9,87 +9,48 @@ import Forum from '../components/screens/Forum';
 import DrawerContent from '../components/DrawerContent';
 import ProfileScreen from '../components/screens/ProfileScreen';
 import SettingsScreen from '../components/screens/SettingsScreen';
-import AuthContext from '../components/Context'
+import HomeStack from './HomeStack'
 
-const AppStack = ({userLogout}) => {
+const AppStack = () => {
 
     const bottomTab = createBottomTabNavigator()
 
     const Drawer = createDrawerNavigator()
 
-    function Home_Page({navigation}) {
-        return (
-            <HomePage navigation = {navigation} userLogout = {userLogout} />
-        )
-    }
-
-    //Learn the basics screen
-    function Basics({navigation}) {
-        return (
-            <BasicScreen navigation = {navigation}/>
-        )
-    }
-
-    // For sleep screen
-    function sleep({navigation}) {
-        return (
-            <SleepScreen navigation = {navigation} />
-        )
-    }
-    
-    //Stress relief screen
-    function stress({navigation}) {
-        return (
-            <StressRelief navigation = {navigation} />
-        )
-    }
-
-    //forum screen
-    function forum({navigation}) {
-        return (
-            <Forum navigation = {navigation} />
-        )
-    }
-
-    //Profile screen
-    function profile () {
-        return (
-            <ProfileScreen />
-        )
-    }
-
-    //Settings screen
-    function settings() {
-        return (
-            <SettingsScreen />
-        )
-    }
-
     function tabNavigator() {
         return (
-            <bottomTab.Navigator>
+            <bottomTab.Navigator
+                tabBarOptions = {{
+                    showLabel: false,
+                    style: {
+                        position: 'absolute',
+                        backgroundColor: '#fff',
+                        borderRadius: 15 
+                    }
+                }}
+            >
                 <bottomTab.Screen 
-                    name = 'Home_Page'
-                    component = {Home_Page}
+                    name = 'Home'
+                    component = {HomeStack}
                 />
                 <bottomTab.Screen
                     name = 'Basics'
-                    component = {Basics}
+                    component = {BasicScreen}
                 /> 
 
                 <bottomTab.Screen
                     name = 'Sleep'
-                    component = {sleep}
+                    component = {SleepScreen}
                 />      
 
                 <bottomTab.Screen
                     name = 'Stress'
-                    component = {stress}
+                    component = {StressRelief}
                 />  
 
                 <bottomTab.Screen
                     name = 'Forum'
-                    component = {forum}
+                    component = {Forum}
                 /> 
             </bottomTab.Navigator>
         )
@@ -98,9 +59,9 @@ const AppStack = ({userLogout}) => {
     return (
         
             <Drawer.Navigator drawerContent = {props => <DrawerContent {...props} />}>
-                <Drawer.Screen name = 'Home' component = {tabNavigator} />
-                <Drawer.Screen name = 'Profile' component = {profile} />
-                <Drawer.Screen name = 'Settings' component = {settings} />
+                <Drawer.Screen name = 'home' component = {tabNavigator} />
+                <Drawer.Screen name = 'Profile' component = {ProfileScreen} />
+                <Drawer.Screen name = 'Settings' component = {SettingsScreen} />
             </Drawer.Navigator>
         
         

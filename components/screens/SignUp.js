@@ -108,7 +108,6 @@ const SignUp = ({navigation}) => {
                 }
                 
             } else {
-                console.log('helloo')
                 setData({
                 ...data,
                     error: 'Passwords do not match',
@@ -138,7 +137,7 @@ const SignUp = ({navigation}) => {
         <View style = {[styles.container]}>
             <StatusBar backgroundColor = '#009387' barStyle = 'light-content'/>
             <View style = {styles.header}>
-                <Text style = {styles.text_header}>Welcome</Text>
+                <Text style = {styles.text_header}>Register Now!</Text>
             </View>
             <Animatable.View 
                 animation = 'fadeInUpBig'
