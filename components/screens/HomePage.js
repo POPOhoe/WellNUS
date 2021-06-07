@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   scroll: {
-    marginBottom: 50,
+    marginBottom: 60,
     
   },
   imageView: {
