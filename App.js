@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useReducer } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import LoginStack from './stacks/LoginStack';
 import AppStack from './stacks/AppStack';
@@ -16,6 +16,7 @@ import {
 } from 'react-native-paper'
 import firebase from './firebase/fire';
 import * as Font from 'expo-font'
+import moment from 'moment';
 
 const App = () => {
 
@@ -26,6 +27,8 @@ const App = () => {
   const [error, setError] = useState(null)
 
   const [darkTheme, setDarkTheme] = useState(false)
+
+  const [date, setDate] = useState(moment())
 
   const authContext = useMemo(() => ({
     setUser: () => {
@@ -62,6 +65,12 @@ const App = () => {
       } else {
         console.log('no')
       }
+    },
+    selectDate: (date) => {
+      setDate(moment(date))
+    },
+    returnDate: () => {
+      return {date}
     }
     
   }))
@@ -127,6 +136,7 @@ const App = () => {
 
   return (
     <PaperProvider theme = {theme}>    
+      <StatusBar hidden = {true}/>
       <AuthContext.Provider value = {authContext}>
         <NavigationContainer theme = {theme}>
           {userToken ?
